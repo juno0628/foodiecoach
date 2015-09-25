@@ -1,2 +1,3 @@
 # foodiecoach
-meteor
+meteor application for foodies in ny
+
