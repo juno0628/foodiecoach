@@ -1,0 +1,62 @@
+<head>
+  <title>foodiecoach for foodies</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+		<div>
+			<h1 id="foodie-coach-header">Foodie Coach for Japanese Restaurants</h1>
+		</div></div>
+	</nav>
+	<div id="all-container">
+	  
+		<h3>Add New Restaurant</h3>
+			{{>newplace}}
+			<br><br>
+		<h3>Search By Location (sorted by location, restaurant name)</h3>
+			{{>locationlist}}
+			<br><br>
+	  	{{>placelist}}
+  </div>
+</body>
+
+<template name="newplace">
+	<label class="col-md-8">Restaurant Name</label>
+	<input id="newplace-name" class="col-md-8" type="text" placeholder="Enter Restaurant name">
+	<label class="col-md-8">Location</label>
+	<input  id="newplace-location" class="col-md-8" type="text" placeholder="Enter Location here">
+	<label class="col-md-8">Address</label>
+	<input id="newplace-address" class="col-md-8" type="text" placeholder="Enter Address here">
+	<label class="col-md-8">Hour</label>
+	<input id="newplace-hour" class="col-md-8" type="text" placeholder="Enter Hour here">
+	<label class="col-md-8">Deal</label>
+	<input id="newplace-deal" class="col-md-8" type="text" placeholder="Enter Deal here">
+	<label class="col-md-8">Deal-Hour</label>
+	<input id="newplace-dealhour" class="col-md-8" type="text" placeholder="Enter Dealhour here"><br>
+	<button id="place-register-button" class="btn btn-info">Register</button>
+</template>
+
+<template name="placelist">
+  <div id="placelist-container" class="place-card bs-callout bs-callout-info">
+  	{{#each place}}
+  		<div id="place-container" class="alert alert-info">
+		  	<div><strong>{{name}}:</strong></div>
+		  	<div><strong>{{location}}</strong></div>
+		  	<div>{{address}}</div>
+		  	<div>({{hour}})</div>
+		  	<br>
+		  	<div>{{deal}}</div>
+		  	<div>{{dealhour}}</div>
+		  </div>
+  	{{/each}}
+ 	</div>
+</template>
+
+<template name="locationlist">
+	<div id="locationlist-container" class="bs-callout bs-callout-info">
+		{{#each location}}
+		<button class="location-button col-lg-3 btn btn-default">{{name}}</button>
+		{{/each}}
+	</div>
+</template>
