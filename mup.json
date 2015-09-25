@@ -9,7 +9,6 @@
       //"pem": "~/.ssh/id_rsa"
     }
   ],
-
   // Install MongoDB in the server, does not destroy local MongoDB on future setup
   "setupMongo": true,
 
@@ -27,10 +26,10 @@
   "enableUploadProgressBar": true,
 
   // Application name (No spaces)
-  "appName": "meteor",
+  "appName": "foodiecoach",
 
   // Location of app (local directory)
-  "app": "/path/to/the/app",
+  "app": "/Users/juno0628/dev/wdi/Meteor/foodcoach",
 
   // Configure environment
   "env": {
