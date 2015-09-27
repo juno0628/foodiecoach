@@ -1,5 +1,6 @@
 /* CSS declarations go here */
 #foodie-coach-header {
+	text-align: center;
 	line-height: 50px;
 }
 #all-container {
@@ -11,8 +12,8 @@
 #place-container {
 	margin: 2px;
 	padding: 10px;
-	width: 250px;
-	height: 150px;
+	width: 330px;
+	height: 180px;
 	border: solid 2px #49afcd;
 	float: left;
 }
@@ -28,6 +29,10 @@
 
 .col-md-8 {
 	width: 800px;
+}
+
+#newplace-location {
+	width: 812px;
 }
 
 @media (max-width: 800px) {
