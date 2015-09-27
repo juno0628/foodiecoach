@@ -15,15 +15,26 @@ if(Meteor.isClient) {
     }
   });
   Template.locationlist.helpers({
+    'locations' : function() {
+      return LocationList.find().fetch();
+    }
+  })
+  Template.locationOption.helpers({
+    'locationIs' : function(name) {
+      return this.name === "All Manhattan"; 
+    }
+  })
+  Template.newplace.helpers({
     'location' : function() {
       return LocationList.find().fetch();
     }
   })
+
   Template.newplace.events({
     'click #place-register-button' : function() {
       //store selectedLocation in session
       var newName = $('#newplace-name').val();
-      var newLocation = $('#newplace-Location').val();
+      var newLocation = $('#newplace-location option:selected').text()
       var newAddress = $('#newplace-address').val();
       var newHour = $('#newplace-hour').val();
       var newDeal = $('#newplace-deal').val();
@@ -31,7 +42,11 @@ if(Meteor.isClient) {
       // Session.set('name', 'hello from newplace button');
       // var selectedLocation = Session.get('selectedLocation');
       PlaceList.insert({name: newName, location: newLocation, address: newAddress, hour: newHour, deal: newDeal, dealhour: newDealHour})
-      return console.log("added"); 
+      $('#newplace-name').val('');
+      $('#newplace-address').val('');
+      $('#newplace-deal').val('');
+      $('#newplace-dealhour').val('');
+      return window.alert("new restaurant registered"); 
     }
   });
   Template.locationlist.events({
@@ -60,6 +75,7 @@ if(Meteor.isServer) {
  PlaceList.insert({name: "Sun Chan", location: "Upper West Side", address: "2707 Broadway, New York, NY 10025", deal: "no deal", dealhour: "N/A", hour: "5:30PM to 3:00AM"})
  PlaceList.insert({name: "Otafuku", location: "East Village", address: "220 E 9th St, New York, NY 10003", deal: "no deal", dealhour: "N/A", hour: "12:00 to 11:00PM"})
  PlaceList.insert({name: "Sushi of Gari", location: "Upper East Side", address: "402 E 78th St, New York, NY 10075", deal: "no deal", dealhour: "N/A", hour: "5:00 to 11:15PM"})
+ PlaceList.insert({name: "Kenka", location: "East Village", address: "25 St Marks Pl, New York, NY 10003", deal: "no deal", dealhour: "N/A", hour: "6:00PM to 4:00AM"})
   LocationList.remove({})
   LocationList.insert({name: "Upper West Side"})
   LocationList.insert({name: "Upper East Side"})

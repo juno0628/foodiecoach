@@ -25,7 +25,11 @@
 	<label class="col-md-8">Restaurant Name</label>
 	<input id="newplace-name" class="col-md-8" type="text" placeholder="Enter Restaurant name">
 	<label class="col-md-8">Location</label>
-	<input  id="newplace-location" class="col-md-8" type="text" placeholder="Enter Location here">
+	<select id="newplace-location" class="col-md-8">
+		{{#each locations}}
+			{{>locationOption}}
+		{{/each}}
+	</select>
 	<label class="col-md-8">Address</label>
 	<input id="newplace-address" class="col-md-8" type="text" placeholder="Enter Address here">
 	<label class="col-md-8">Hour</label>
@@ -35,6 +39,12 @@
 	<label class="col-md-8">Deal-Hour</label>
 	<input id="newplace-dealhour" class="col-md-8" type="text" placeholder="Enter Dealhour here"><br>
 	<button id="place-register-button" class="btn btn-info">Register</button>
+</template>
+
+<template name="locationOption">
+	{{#unless locationIs 'All Manhattan'}}
+		<option value="{{name}}">{{name}}</option>
+	{{/unless}}
 </template>
 
 <template name="placelist">
