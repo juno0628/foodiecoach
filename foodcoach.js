@@ -25,7 +25,7 @@ if(Meteor.isClient) {
     }
   })
   Template.newplace.helpers({
-    'location' : function() {
+    'locations' : function() {
       return LocationList.find().fetch();
     }
   })
