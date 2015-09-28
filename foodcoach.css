@@ -141,7 +141,7 @@
 	}
 	.arrow-down {
 		position: absolute;
-		top: 130px;
+		top: 110px;
 	}
 	#blinking-text-header {
 		display: hidden;
@@ -149,6 +149,5 @@
 		font-size: 16px;
 		white-space: normal;
 		animation: none;
-
 	}
 }
