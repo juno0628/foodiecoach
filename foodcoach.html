@@ -58,6 +58,7 @@
 		  	<br>
 		  	<div>{{deal}}</div>
 		  	<div>{{dealhour}}</div>
+		  	{{>enlargeCard}}
 		  </div>
   	{{/each}}
  	</div>
@@ -69,4 +70,9 @@
 		<button class="location-button col-lg-3 btn btn-default">{{name}}</button>
 		{{/each}}
 	</div>
+</template>
+
+<template name="enlargeCard">
+	<span id="place-enlarge">+enlarge</span>
+	<span id="close-card" class="hidden">X</span>
 </template>

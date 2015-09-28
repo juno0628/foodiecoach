@@ -14,16 +14,19 @@ if(Meteor.isClient) {
       } 
     }
   });
+
   Template.locationlist.helpers({
     'locations' : function() {
       return LocationList.find().fetch();
     }
   })
+
   Template.locationOption.helpers({
     'locationIs' : function(name) {
       return this.name === "All Manhattan"; 
     }
   })
+
   Template.newplace.helpers({
     'locations' : function() {
       return LocationList.find().fetch();
@@ -49,6 +52,7 @@ if(Meteor.isClient) {
       return window.alert("new restaurant registered"); 
     }
   });
+
   Template.locationlist.events({
     'click .location-button': function() {
       var locationid = this._id; 
@@ -58,7 +62,28 @@ if(Meteor.isClient) {
       Session.set('locationName', locationName)
       return console.log(locationName);
     }
-  })
+  });
+
+  Template.enlargeCard.events({
+    'click #place-enlarge': function(e) {
+        console.log("clicked");
+        //find 
+        var selectedCard = $(e.currentTarget).parent();
+        //fadeout all but selected card and enlarge
+        $('body').addClass('low-opacity');
+        selectedCard.removeClass("low-opacity");
+        selectedCard.addClass("selected-enlarge-card");
+        selectedCard.find('#close-card').removeClass('hidden');
+       //change text to x mark
+        $(e.currentTarget).addClass('hidden');
+    },
+    'click #close-card': function(e) {
+        var enlargedCard = $(e.currentTarget).parent();
+        enlargedCard.removeClass('selected-enlarge-card');
+        enlargedCard.children('#place-enlarge').removeClass('hidden');
+        $(e.currentTarget).addClass('hidden');
+    }
+  });
 }
 
 if(Meteor.isServer) {
