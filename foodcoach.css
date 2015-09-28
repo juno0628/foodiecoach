@@ -110,6 +110,11 @@
 }
 
 @media (max-width: 800px) {
+	#all-container {
+		position: absolute;
+		top: 140px;
+		left: 10%;
+	}
 	.col-md-8 {
 		text-align: center;
 		width: 80%;
@@ -136,9 +141,14 @@
 	}
 	.arrow-down {
 		position: absolute;
-		top: 80px;
+		top: 130px;
 	}
 	#blinking-text-header {
 		display: hidden;
+		width: 100%;
+		font-size: 16px;
+		white-space: normal;
+		animation: none;
+
 	}
 }
