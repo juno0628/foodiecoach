@@ -2,7 +2,6 @@
 #foodie-coach-header {
 	text-align: center;
 	line-height: 50px;
-	padding-bottom: 10px;
 }
 
 #blinking-text-header {
@@ -11,6 +10,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 	font-size: 25px;
+	padding-bottom: 10px;
 	animation: type 5s steps(50, end);
 }
 
