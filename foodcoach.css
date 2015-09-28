@@ -2,10 +2,11 @@
 #foodie-coach-header {
 	text-align: center;
 	line-height: 50px;
+	padding-bottom: 10px;
 }
 #all-container {
 	position: absolute;
-	top: 70px;
+	top: 90px;
 	left: 10%;
 }
 
@@ -68,6 +69,22 @@
 	position: absolute;
 	top: 0;
 	right: 5px;
+}
+
+.arrow-down {
+	position: fixed;
+	top: 80px;
+	left: 48%;
+	z-index: 9999;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-top: 25px solid #3a87ad;
+}
+
+.arrow-down-white {
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #FFF;
 }
 
 @media (max-width: 800px) {
