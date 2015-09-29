@@ -12,10 +12,9 @@
 	</nav>
 	<div class="arrow-down"></div>
 	<div id="all-container">
-	  
-		<h3>Add New Restaurant</h3>
-			{{>newplace}}
-			<br><br>
+		{{> loginButtons}}
+		{{>newplace}}
+
 		<h3>Search By Location (sorted by location, restaurant name)</h3>
 			{{>locationlist}}
 			<br><br>
@@ -24,6 +23,7 @@
 </body>
 
 <template name="newplace">
+	<h3>Add New Restaurant</h3>
 	<label class="col-md-8">Restaurant Name</label>
 	<input id="newplace-name" class="col-md-8" type="text" placeholder="Enter Restaurant name">
 	<label class="col-md-8">Location</label>
@@ -41,6 +41,7 @@
 	<label class="col-md-8">Deal-Hour</label>
 	<input id="newplace-dealhour" class="col-md-8" type="text" placeholder="Enter Dealhour here"><br>
 	<button id="place-register-button" class="btn btn-info">Register</button>
+	<br><br>
 </template>
 
 <template name="locationOption">
