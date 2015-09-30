@@ -3,15 +3,37 @@ LocationList = new Mongo.Collection("locations")
 if(Meteor.isClient) {
   console.log("foodcoach.js is linked for client");
   Meteor.startup(function() {
-    GoogleMaps.load();
+    GoogleMaps.load({libraries: 'geometry,places'});
   });
 
   Template.showMap.helpers({
+    //create google map and store in session
     'mapRender': function() {
       if(GoogleMaps.loaded()) {
-       return GoogleMaps.create({
+       return Session.set('googleMap',GoogleMaps.create({
           name: 'googleMap', element: document.querySelector('.google-map-container'), options: {center: new google.maps.LatLng(40.7834, -73.9662), zoom: 10}
-        });
+        }));
+      } 
+    }
+  })
+
+  Template.googleApi.events({
+    'click #google-autofill-button': function() {
+      var map = GoogleMaps.maps.googleMap.instance;
+      var placeName = $('#newplace-name').val() + " Manhattan, NY";
+      // GoogleMaps.ready('googleMap', function(map) {
+      //   var marker = new google.maps.Marker({
+      //     position: map.options.center,
+      //     map: map.instance
+      //   })
+      var service = new google.maps.places.PlacesService(map);
+      service.textSearch({query: placeName}, callback);
+
+      function callback(results, status) {
+        if(status == google.maps.places.PlacesServiceStatus.OK) {
+         var resultAddress = results[0].formatted_address;
+         $('#newplace-address').val(resultAddress);
+        }
       }
     }
   })
@@ -98,12 +120,6 @@ if(Meteor.isClient) {
         $(e.currentTarget).addClass('hidden');
     }
   });
-
-  Template.googleApi.events ({
-    'click #google-autofill-button': function(e) {
-        console.log("clicked googlemap-api")
-    }
-  })
 }
 
 if(Meteor.isServer) {
