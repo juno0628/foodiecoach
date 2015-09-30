@@ -20,19 +20,27 @@ if(Meteor.isClient) {
   Template.googleApi.events({
     'click #google-autofill-button': function() {
       var map = GoogleMaps.maps.googleMap.instance;
+      var name; 
       var placeName = $('#newplace-name').val() + " Manhattan, NY";
-      // GoogleMaps.ready('googleMap', function(map) {
-      //   var marker = new google.maps.Marker({
-      //     position: map.options.center,
-      //     map: map.instance
-      //   })
+      var geometry; 
+      var photo; 
       var service = new google.maps.places.PlacesService(map);
       service.textSearch({query: placeName}, callback);
 
       function callback(results, status) {
+        //render place information 
         if(status == google.maps.places.PlacesServiceStatus.OK) {
-         var resultAddress = results[0].formatted_address;
-         $('#newplace-address').val(resultAddress);
+           var resultAddress = results[0].formatted_address;
+           $('#newplace-address').val(resultAddress);
+           geometry = results[0].geometry.location;
+           name = results[0].name;
+           console.log(results);
+        //create marker in the map  
+          var marker = new google.maps.Marker({
+            position: geometry,
+            map: GoogleMaps.maps.googleMap.instance,
+            title: name
+          });
         }
       }
     }
