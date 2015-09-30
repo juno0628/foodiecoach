@@ -2,6 +2,20 @@ PlaceList = new Mongo.Collection("places")
 LocationList = new Mongo.Collection("locations")
 if(Meteor.isClient) {
   console.log("foodcoach.js is linked for client");
+  Meteor.startup(function() {
+    GoogleMaps.load();
+  });
+
+  Template.showMap.helpers({
+    'mapRender': function() {
+      if(GoogleMaps.loaded()) {
+       return GoogleMaps.create({
+          name: 'googleMap', element: document.querySelector('.google-map-container'), options: {center: new google.maps.LatLng(40.7834, -73.9662), zoom: 10}
+        });
+      }
+    }
+  })
+
   Template.placelist.helpers({
     'place' : function() {
       //if location was not filtered show all
@@ -84,6 +98,12 @@ if(Meteor.isClient) {
         $(e.currentTarget).addClass('hidden');
     }
   });
+
+  Template.googleApi.events ({
+    'click #google-autofill-button': function(e) {
+        console.log("clicked googlemap-api")
+    }
+  })
 }
 
 if(Meteor.isServer) {
