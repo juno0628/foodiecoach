@@ -1,100 +1,115 @@
-	<head>
-	  <title>foodiecoach for foodies</title>
-	</head>
+<template name="home">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+		<div>
+			<h1 id="foodie-coach-header">Foodie Coach for Japanese Restaurants</h1>
+			<h4 id="blinking-text-header">Part of the secret of a success in life is to eat what you like - Mark Twain</h4>
+		</div></div>
+	</nav>
+	<div class="arrow-down"></div>
+	<div id="all-container">
+		{{> loginButtons}}
+		{{>newplace}}
 
-	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-			<div>
-				<h1 id="foodie-coach-header">Foodie Coach for Japanese Restaurants</h1>
-				<h4 id="blinking-text-header">Part of the secret of a success in life is to eat what you like - Mark Twain</h4>
-			</div></div>
-		</nav>
-		<div class="arrow-down"></div>
-		<div id="all-container">
-			{{> loginButtons}}
-			{{>newplace}}
+		<h3>Search By Location (sorted by location, restaurant name)</h3>
+			{{>locationlist}}
+		<br><br>
+	  {{>placelist}}
+	  <br><br>
+	  {{>footer}}
+  </div>
+</template>
 
-			<h3>Search By Location (sorted by location, restaurant name)</h3>
-				{{>locationlist}}
-				<br><br>
-		  	{{>placelist}}
-	  </div>
-	</body>
+<template name="locationOption">
+	{{#unless locationIs 'All Manhattan'}}
+		<option id="newlocation-option" class="col-md-8" value="{{name}}">{{name}}</option>
+	{{/unless}}
+</template>
 
+<template name="placelist">
+  <div id="placelist-container" class="place-card bs-callout bs-callout-info">
+  	{{#each place}}
+  		<div id="place-container" class="alert alert-info">
+		  	<div><strong>{{name}}:</strong></div>
+		  	<div><strong>{{location}}</strong></div>
+		  	<div>{{address}}</div>
+		  	<div>({{hour}})</div>
+		  	<br>
+		  	<div>{{deal}}</div>
+		  	<div>{{dealhour}}</div>
+		  	{{>enlargeCard}}
+		  </div>
+  	{{/each}}
+  	<div class="placelist-row"></div>
+ 	</div>
+</template>
 
-	<template name="locationOption">
-		{{#unless locationIs 'All Manhattan'}}
-			<option id="newlocation-option" class="col-md-8" value="{{name}}">{{name}}</option>
-		{{/unless}}
-	</template>
+<template name="locationlist">
+	<div id="locationlist-container" class="bs-callout bs-callout-info">
+		{{#each locations}}
+		<button class="location-button col-lg-3 btn btn-default">{{name}}</button>
+		{{/each}}
+	</div>
+</template>
 
-	<template name="placelist">
-	  <div id="placelist-container" class="place-card bs-callout bs-callout-info">
-	  	{{#each place}}
-	  		<div id="place-container" class="alert alert-info">
-			  	<div><strong>{{name}}:</strong></div>
-			  	<div><strong>{{location}}</strong></div>
-			  	<div>{{address}}</div>
-			  	<div>({{hour}})</div>
-			  	<br>
-			  	<div>{{deal}}</div>
-			  	<div>{{dealhour}}</div>
-			  	{{>enlargeCard}}
-			  </div>
-	  	{{/each}}
-	 	</div>
-	</template>
+<template name="enlargeCard">
+	<span id="place-enlarge">+enlarge</span>
+	<span id="close-card" class="hidden">X</span>
+</template>
+<!-- google  api related -->
+<template name="googleApi">
+	<img id="powered_by_google_img" src="/google_api.png">
+	<button id="google-autofill-button" class="col-md-4 btn btn-default">Google API to autofill</button>
+</template>
 
-	<template name="locationlist">
-		<div id="locationlist-container" class="bs-callout bs-callout-info">
+<template name="showMap">
+	<div class="google-map-container">
+		{{mapRender}}
+	</div>
+	<div class="google-map-row"></div>
+</template>
+
+<!-- google api end -->
+
+<template name="newplace">
+	<div class="newplace-container">
+		<h3>Add New Restaurant</h3>
+		<label class="col-md-8">Restaurant Name</label>
+		<input id="newplace-name" class="col-md-8" type="text" placeholder="Enter Restaurant name">
+		{{>googleApi}}
+		<label class="col-md-8">Location</label>
+		<select id="newplace-location" class="col-md-8">
 			{{#each locations}}
-			<button class="location-button col-lg-3 btn btn-default">{{name}}</button>
+				{{>locationOption}}
 			{{/each}}
-		</div>
-	</template>
+		</select>
+		<label class="col-md-8">Address</label>
+		<input id="newplace-address" class="col-md-8" type="text" placeholder="Enter Address here">
+		<label class="col-md-8">Hour</label>
+		<input id="newplace-hour" class="col-md-8" type="text" placeholder="Enter Hour here">
+		<label class="col-md-8">Deal</label>
+		<input id="newplace-deal" class="col-md-8" type="text" placeholder="Enter Deal here">
+		<label class="col-md-8">Deal-Hour</label>
+		<input id="newplace-dealhour" class="col-md-8" type="text" placeholder="Enter Dealhour here"><br>
+		<button id="place-register-button" class="btn btn-info">Register</button>
+		<br><br>
+	</div>
+	{{>showMap}}
+</template>
 
-	<template name="enlargeCard">
-		<span id="place-enlarge">+enlarge</span>
-		<span id="close-card" class="hidden">X</span>
-	</template>
-  <!-- google  api related -->
-	<template name="googleApi">
-		<img id="powered_by_google_img" src="/google_api.png">
-		<button id="google-autofill-button" class="col-md-4 btn btn-default">Google API to autofill</button>
-	</template>
+<!-- home template -->
 
-	<template name="showMap">
-		<div class="google-map-container">
-			{{mapRender}}
-		</div>
-		<div class="google-map-row"></div>
-	</template>
 
-	<!-- google api end -->
+<!-- layout template -->
+<template name="main">
+	<head>
+  	<title>foodiecoach for foodies</title>
+	</head>
+	<body>
+		{{>yield}}
+	</body>
+</template>
 
-	<template name="newplace">
-		<div class="newplace-container">
-			<h3>Add New Restaurant</h3>
-			<label class="col-md-8">Restaurant Name</label>
-			<input id="newplace-name" class="col-md-8" type="text" placeholder="Enter Restaurant name">
-			{{>googleApi}}
-			<label class="col-md-8">Location</label>
-			<select id="newplace-location" class="col-md-8">
-				{{#each locations}}
-					{{>locationOption}}
-				{{/each}}
-			</select>
-			<label class="col-md-8">Address</label>
-			<input id="newplace-address" class="col-md-8" type="text" placeholder="Enter Address here">
-			<label class="col-md-8">Hour</label>
-			<input id="newplace-hour" class="col-md-8" type="text" placeholder="Enter Hour here">
-			<label class="col-md-8">Deal</label>
-			<input id="newplace-deal" class="col-md-8" type="text" placeholder="Enter Deal here">
-			<label class="col-md-8">Deal-Hour</label>
-			<input id="newplace-dealhour" class="col-md-8" type="text" placeholder="Enter Dealhour here"><br>
-			<button id="place-register-button" class="btn btn-info">Register</button>
-			<br><br>
-		</div>
-		{{>showMap}}
-	</template>
+<template name="footer">
+	<div class="copyright-list"> Copyright &copy; @juno0628,2015</div>
+</template>

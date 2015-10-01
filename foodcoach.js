@@ -1,3 +1,14 @@
+
+//setting up router 
+Router.route('/',function (){ 
+  this.render('home');
+  this.layout('main');
+});
+
+Router.configure({
+  layoutTemplate: 'main'
+})
+
 PlaceList = new Mongo.Collection("places")
 LocationList = new Mongo.Collection("locations")
 if(Meteor.isClient) {

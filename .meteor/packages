@@ -24,3 +24,5 @@ accounts-google
 accounts-password
 accounts-ui
 dburles:google-maps
+iron:router
+ejson
