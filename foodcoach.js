@@ -102,6 +102,7 @@ if(Meteor.isClient) {
       PlaceList.insert({name: newName, location: newLocation, address: newAddress, hour: newHour, deal: newDeal, dealhour: newDealHour})
       $('#newplace-name').val('');
       $('#newplace-address').val('');
+      $('#newplace-hour').val('');
       $('#newplace-deal').val('');
       $('#newplace-dealhour').val('');
       return window.alert("new restaurant registered"); 
